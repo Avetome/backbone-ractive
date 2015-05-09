@@ -25,7 +25,7 @@ var IssuesListView = Ractive.extend({
                 repos.url = Urls.repos(this.get("user"));
 
                 repos.fetch().then(
-                    function(data){
+                    function(){
                         this.set("repositories", repos);
                         this.set("userHasNoRepos", !repos.length);
                         this.set("errorLoadingRepos", false);
@@ -38,7 +38,23 @@ var IssuesListView = Ractive.extend({
             },
 
             repoChange: function(event) {
-                console.debug(this.get("repositories").get(event.original.target.value));
+                var id = event.original.target.value;
+                var repository = this.get("repositories").get(id);
+                this.set("repository", repository);
+                console.debug(repository);
+
+                var issues = this.get("issues");
+
+                // also we can user repository.get("issues_url"), but in this case we need cut "{/number}" substring                
+                issues.url = Urls.issues(this.get("user"), repository.get("name"));
+                issues.fetch().then(
+                    function(){
+                        this.set("issues", issues);
+                    }.bind(this),
+                    function(error){
+                        console.error(error);
+                    }.bind(this)                    
+                )
             }
         });
     }  
