@@ -20,17 +20,16 @@ var IssuesListView = Ractive.extend({
     oninit: function (options) {
         this.on({
             userChange: function(event) {
-                console.debug(this.get("repositories").length, Urls.repos(this.get("user")));
                 var repos = this.get("repositories");
                 repos.url = Urls.repos(this.get("user"));
 
-                repos.fetch().then(
-                    function(){
+                repos.fetch()
+                    .done(function(){
                         this.set("repositories", repos);
                         this.set("userHasNoRepos", !repos.length);
                         this.set("errorLoadingRepos", false);
-                    }.bind(this), 
-                    function(error){
+                    }.bind(this))
+                    .fail(function(error){
                         this.set("userHasNoRepos", false);
                         this.set("errorLoadingRepos", true);
                     }.bind(this)
@@ -41,20 +40,18 @@ var IssuesListView = Ractive.extend({
                 var id = event.original.target.value;
                 var repository = this.get("repositories").get(id);
                 this.set("repository", repository);
-                console.debug(repository);
-
                 var issues = this.get("issues");
 
                 // also we can user repository.get("issues_url"), but in this case we need cut "{/number}" substring                
                 issues.url = Urls.issues(this.get("user"), repository.get("name"));
-                issues.fetch().then(
-                    function(){
+                issues.fetch()
+                    .done(function(){
                         this.set("issues", issues);
-                    }.bind(this),
-                    function(error){
+                    }.bind(this))
+                    .fail(function(error){
                         console.error(error);
                     }.bind(this)                    
-                )
+                );
             }
         });
     }  
