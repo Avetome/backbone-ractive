@@ -1,0 +1,20 @@
+{
+  "name": "swiftgift",
+  "version": "0.0.1",
+  "authors": [
+    "Alexey Nikiforov <Avetome@gmail.com>"
+  ],
+  "description": "SwiftGift coding challenge",
+  "main": "/build/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
