@@ -13,6 +13,24 @@
 </head>
 <body>
     <script id="IssuesListTemplate" type="ractive/text">
+        <div class="settings">
+            <input type="text" class="settings__user" on-change="userChange" value="{{user}}"/>
+            {{#if errorLoadingRepos}}
+                <span class="settings__error">Error repositories loading. Try another user name.</span>
+            {{/if}}
+            {{#if userHasNoRepos}}
+                <span>User has no repositories</span>
+            {{else}}
+                {{#if repositories.length}}
+                    <select class="settings__repo" on-change="repoChange">
+                        <option value="" disabled selected>Select a repo...</option>
+                        {{#repositories}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/repositories}}                
+                    </select>
+                {{/if}}
+            {{/if}}
+        </div>
         {{#issues}}
             <h1>{{title}}</h1>
         {{/issues}}    
