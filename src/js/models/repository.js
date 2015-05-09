@@ -1,6 +1,6 @@
 var Backbone = require("backbone");
 
-var Repositary = Backbone.Model.extend({
+var Repository = Backbone.Model.extend({
     defaults: {
         name: "",
         full_name: "",
@@ -8,4 +8,4 @@ var Repositary = Backbone.Model.extend({
     }
 });
 
-module.exports = Repositary;
+module.exports = Repository;
