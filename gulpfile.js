@@ -71,7 +71,6 @@ gulp.task('bootstrap_less:build', function() {
 gulp.task('js:build', function(    ) {
     var bundler = browserify({debug: true, extensions: ['.js']})
         .add(config.src.js)
-        .transform(debowerify)
 
     return bundler.bundle()
         .on('error', function (err) {
