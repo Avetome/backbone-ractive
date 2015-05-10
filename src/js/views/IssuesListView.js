@@ -25,6 +25,9 @@ var IssuesListView = Ractive.extend({
         repoHasNoIssues: false,
         errorLoadingIssues: false,
         issuesLoading: false,
+        perPage: 30,
+        pages: 0,
+        page: 1,
         visible: true,
 
         formatDate: function(date) {
@@ -99,35 +102,48 @@ var IssuesListView = Ractive.extend({
                 var id = event.original.target.value;
                 var repository = this.get("repositories").get(id);
                 this.set("repository", repository);
-                var issues = this.get("issues");
-                
-                this.set("issuesLoading", true);
-                this.set("errorLoadingIssues", false);
-                this.set("repoHasNoIssues", false);                
 
-                // also we can user repository.get("issues_url"), but in this case we need cut "{/number}" substring                
-                issues.url = Urls.issues(this.get("user"), repository.get("name"));
-                issues.fetch()
-                    .done(function(){
-                        this.set("issues", issues);
-                        this.set("repoHasNoIssues", !issues.length);
-                        this.set("errorLoadingIssues", false);
-                        this.set("issuesLoading", false);                        
-                    }.bind(this))
-                    .fail(function(error){
-                        this.set("repoHasNoIssues", false);
-                        this.set("errorLoadingIssues", true);
-                        this.set("issuesLoading", false);
-                    }.bind(this)                    
-                );
+                this.updateIssues();
             },
+
+            perPageChange: function(event) {
+                var perPage = event.original.target.value;
+                this.set("perPage", perPage);
+
+                this.updateIssues();
+            },           
 
             setUser(event, user) {
                 this.set("user", user);
                 this.fire("userChange");
                 return false;
-            }
+            },
         });
+        
+        this.updateIssues = function() {
+            var repository = this.get("repository");
+            var issues = this.get("issues");
+
+            this.set("issuesLoading", true);
+            this.set("errorLoadingIssues", false);
+            this.set("repoHasNoIssues", false);                
+
+            // also we can user repository.get("issues_url"), but in this case we need cut "{/number}" substring                
+            issues.url = Urls.issues(this.get("user"), repository.get("name"), +this.get("page"), +this.get("perPage"));
+            issues.fetch()
+                .done(function(){
+                    this.set("issues", issues);
+                    this.set("repoHasNoIssues", !issues.length);
+                    this.set("errorLoadingIssues", false);
+                    this.set("issuesLoading", false);                        
+                }.bind(this))
+                .fail(function(error){
+                    this.set("repoHasNoIssues", false);
+                    this.set("errorLoadingIssues", true);
+                    this.set("issuesLoading", false);
+                }.bind(this)                    
+            );            
+        }
     }  
 });
 

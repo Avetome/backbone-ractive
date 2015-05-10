@@ -68,6 +68,7 @@
 }
 
 .issues-list__header {
+    .clearfix;
     background-color: @gray-lighter;
     padding: 10px;
 }
@@ -87,4 +88,15 @@
 .issues-list__error {
     text-align: center;
     .text-danger;
+}
+
+.issues-list__perpage {
+    float: right;
+}
+
+.issues-list__perpageinput {
+    .form-control;
+    .input-sm;
+    display: inline-block;
+    width: 70px;
 }

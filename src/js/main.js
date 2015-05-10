@@ -24,8 +24,8 @@ window.onload = function() {
 
     router.on("route:showIssuesList", function(){
         issuesListView.set("visible", true);
-        issueView.set("visible", false);
         issueView.set("issue", null);
+        //TODO: load state (user, repo, page, perpage)
     });
 
     router.on("route:showIssue", function(user, repository, issueNumber){
@@ -33,7 +33,6 @@ window.onload = function() {
             issuesListView.get("repository").get("name") == repository) {
             var issue = issuesListView.get("issues").findWhere({number: +issueNumber});
             issueView.set("issue", issue);
-            issueView.set("visible", true);
         }
         else {
             //TODO: load issue
