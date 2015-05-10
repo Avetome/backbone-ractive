@@ -1,2 +1,43 @@
 @import "plugins/bootstrap.less";
 
+body {
+    background-color: #fff;
+}
+
+.issues-list {
+    padding: 0;
+}
+
+.issues-list__issue {
+    position: relative;
+    list-style: none;
+    .make-row();
+}
+
+.issues-list__title {
+    .make-md-column(10);
+}
+
+.issues-list__comments {
+    .make-md-column(2);
+}
+
+.settings { 
+    background-color: @jumbotron-bg;
+    color: @jumbotron-color;
+    .box-shadow(0 1px 1px rgba(0,0,0,.05));
+    margin-bottom: @jumbotron-padding;
+    padding: @jumbotron-padding (@jumbotron-padding / 2);
+}
+
+.settings__user {
+    .form-control;
+    display: inline-block;
+    width: 200px;
+}
+
+.settings__repo {
+    .form-control;
+    display: inline-block;
+    width: 200px;
+}

@@ -12,37 +12,9 @@
     <script src="./js/app.js"></script>
 </head>
 <body>
-    <script id="IssuesListTemplate" type="ractive/text">
-        <div class="settings">
-            <input type="text" class="settings__user" on-change="userChange" value="{{user}}"/>            
-            {{#if reposLoading}}
-                <span class="settings__loading">Loading repositories list</span>
-            {{/if}}            
-            {{#if errorLoadingRepos}}
-                <span class="settings__error">Error repositories loading. Try another user name.</span>
-            {{/if}}
-            {{#if userHasNoRepos}}
-                <span>User has no repositories</span>
-            {{else}}
-                {{#if repositories.length}}
-                    <select class="settings__repo" on-change="repoChange">
-                        <option value="" disabled selected>Select a repo...</option>
-                        {{#repositories}}
-                            <option value="{{id}}">{{name}} (issues: {{open_issues_count}})</option>
-                        {{/repositories}}                
-                    </select>
-                {{/if}}
-            {{/if}}
-        </div>
-        <ul class="issues-list">
-        {{#issues}}
-            <li class="issues-list__issue">
-                <div class="issues-list__title">{{title}}</div>
-                <div class="issues-list__comments">{{labels.length}}</div>
-            </li>
-        {{/issues}}
-        </ul>
-    </script>
-    <div id="IssuesList"></div>
+    <div class="container">
+        <div id="IssuesList"></div>
+    </div>
+    //= templates/issues-list.html
 </body>
 </html>

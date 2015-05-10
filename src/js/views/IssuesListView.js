@@ -27,9 +27,17 @@ var IssuesListView = Ractive.extend({
     oninit: function (options) {
         this.on({
             userChange: function(event) {
+                this.set("reposLoading", true);
+                this.set("errorLoadingRepos", false);
+                this.set("userHasNoRepos", false);                    
+
+                // clean issues list
+                var issues = this.get("issues");
+                issues.reset([]);
+                this.set("issues", issues);
+                                
                 var repos = this.get("repositories");
                 repos.url = Urls.repos(this.get("user"));
-                this.set("reposLoading", true);
 
                 repos.fetch()
                     .done(function(){
@@ -44,11 +52,6 @@ var IssuesListView = Ractive.extend({
                         this.set("reposLoading", false);
                     }.bind(this)
                 );
-
-                // clean issues list
-                var issues = this.get("issues");
-                issues.reset([]);
-                this.set("issues", issues);
             },
 
             repoChange: function(event) {
