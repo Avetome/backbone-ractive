@@ -13,6 +13,7 @@ var BackboneAdaptor = require("ractive-adaptors-backbone");
 BackboneAdaptor.Backbone = Backbone;
 
 var DateFormatter = require("./../utils/DateFormatter");
+var ColorHelper = require("./../utils/ColorHelper");
 
 var IssuesListView = Ractive.extend({
     data: {
@@ -34,24 +35,7 @@ var IssuesListView = Ractive.extend({
         formatDate: DateFormatter.format,
 
         isDimColor: function(hexColor) {
-            function hexToRgb(hex) {
-                var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-                hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-                    return r + r + g + g + b + b;
-                });
-
-                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                return result ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16)
-                } : null;
-            }
-
-            var rgbColor =  hexToRgb(hexColor);
-
-            // http://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
-            var brightness = Math.round(0.299*rgbColor.r + 0.578*rgbColor.g + 0.144*rgbColor.b);
+            var brightness = ColorHelper.getBrightnessFromHex(hexColor);
 
             return brightness > 150;
         }
