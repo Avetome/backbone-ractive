@@ -3,8 +3,18 @@
     <ul class="issues-list">
     {{#issues}}
         <li class="issues-list__issue">
-            <div class="issues-list__title">{{title}}</div>
-            <div class="issues-list__comments">{{labels.length}}</div>
+            <div class="issues-list__column1">
+                <p class="issues-list__title">
+                    <a href="#" class="issues-list__link">{{title}}</a>
+                    {{#labels}}
+                        <span class="issues-list__label" style="background-color: #{{color}}">{{name}}</span>
+                    {{/labels}}
+                </p>
+                <p class="issues-list__summary">#{{number}} opened {{formatDate(created_at)}} by {{user.login}}</p>
+            </div>
+            <div class="issues-list__column2">
+                <div class="issues-list__comments">{{comments}}</div>
+            </div>
         </li>
     {{/issues}}
     </ul>

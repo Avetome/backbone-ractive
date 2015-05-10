@@ -9,17 +9,47 @@ body {
 }
 
 .issues-list__issue {
-    position: relative;
-    list-style: none;
     .make-row();
+    border: 1px solid #ddd;
+    border-bottom: none;
+    color: @gray-light;
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px 0;
+    position: relative;        
 }
 
-.issues-list__title {
+.issues-list__column1 {
+    .make-xs-column(8);
+    .make-sm-column(8);
     .make-md-column(10);
 }
 
-.issues-list__comments {
+.issues-list__column2 {
+    .make-xs-column(4);
+    .make-sm-column(4);
     .make-md-column(2);
+    
+    text-align: right;  
+}
+
+.issues-list__link {
+    color: @text-color;
+    font-weight: bold;
+}
+
+.issues-list__comments {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAd0lEQVQoU+3SQQ5AMBCF4b9XsLDiLs4h3IUTuIObNVg6A3mSJo1otda6nu/NZDqGj898dAg2wAzUiSEb0AsuQJWIXNkqeGSiq/yHka1pOTtQZG7WCrbABJSJ2ALd/eT8Px2BIRQWglHkDsAPVcdX9AQ1WnA8v8MJ1vQVS8sKdncAAAAASUVORK5CYII=");
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding-left: 20px;  
+}
+
+.issues-list__label {
+    .label;
+    margin: 0 5px;
 }
 
 .settings { 

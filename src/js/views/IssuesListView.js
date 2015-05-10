@@ -8,8 +8,10 @@ var Urls = require("./../utils/urls");
 var Backbone = require("backbone");
 Backbone.$ = $;
 var Ractive = require("ractive");
+//Ractive.DEBUG = false;
 var BackboneAdaptor = require("ractive-adaptors-backbone");
 BackboneAdaptor.Backbone = Backbone;
+var Moment = require("moment");
 
 var IssuesListView = Ractive.extend({
     data: {
@@ -19,7 +21,19 @@ var IssuesListView = Ractive.extend({
         repositories: new Repositories(),
         userHasNoRepos: false,
         errorLoadingRepos: false,
-        reposLoading: false
+        reposLoading: false,
+
+        formatDate: function(date) {
+            var md = Moment(date);
+            var mn = Moment(); // now
+
+            if(mn.diff(md, "days") < 10) {                
+                return md.fromNow();
+            }
+            else {
+                return md.format("D MMM");
+            }
+        }
     },
 
     adapt: [ BackboneAdaptor ],
@@ -35,7 +49,7 @@ var IssuesListView = Ractive.extend({
                 var issues = this.get("issues");
                 issues.reset([]);
                 this.set("issues", issues);
-                                
+
                 var repos = this.get("repositories");
                 repos.url = Urls.repos(this.get("user"));
 

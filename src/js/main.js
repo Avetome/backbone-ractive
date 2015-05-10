@@ -1,4 +1,5 @@
 var IssuesListView = require("./views/IssuesListView");
+window.Moment = require("moment");
 
 window.onload = function() {
 
