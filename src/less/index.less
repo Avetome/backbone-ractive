@@ -52,6 +52,14 @@ body {
     margin: 0 5px;
 }
 
+.issues-list__author-link {
+    font-weight: bold;
+
+    &:visited {
+        color: @gray-light;
+    }    
+}
+
 .settings { 
     background-color: @jumbotron-bg;
     color: @jumbotron-color;
@@ -70,4 +78,19 @@ body {
     .form-control;
     display: inline-block;
     width: 200px;
+}
+
+.settings__help {
+    .text-muted;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.settings__example {
+    .text-muted;
+    font-weight: bold;
+
+    &:visited {
+        .text-muted;
+    }
 }

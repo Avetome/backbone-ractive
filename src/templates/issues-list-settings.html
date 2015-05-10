@@ -1,21 +1,29 @@
 <div class="settings">
-    <input type="text" class="settings__user" on-change="userChange" value="{{user}}" placeholder="type user name..."/>            
-    {{#if reposLoading}}
-        <span class="settings__loading">Loading repositories list</span>
-    {{/if}}            
-    {{#if errorLoadingRepos}}
-        <span class="settings__error">Error repositories loading. Try another user name.</span>
-    {{/if}}
-    {{#if userHasNoRepos}}
-        <span>User has no repositories</span>
-    {{else}}
-        {{#if repositories.length && !reposLoading}}
-            <select class="settings__repo" on-change="repoChange">
-                <option value="" disabled selected>Select a repo...</option>
-                {{#repositories}}
-                    <option value="{{id}}">{{name}} (issues: {{open_issues_count}})</option>
-                {{/repositories}}                
-            </select>
+    <div>
+        <input type="text" class="settings__user" on-change="userChange" value="{{user}}" placeholder="type user name..."/>
+        {{#if reposLoading}}
+            <span class="settings__loading">Loading repositories list</span>
         {{/if}}
-    {{/if}}
+        {{#if errorLoadingRepos}}
+            <span class="settings__error">Error repositories loading. Try another user name.</span>
+        {{/if}}
+        {{#if userHasNoRepos}}
+            <span>User has no repositories</span>
+        {{else}}
+            {{#if repositories.length && !reposLoading}}
+                <select class="settings__repo" on-change="repoChange">
+                    <option value="" disabled selected>Select a repo...</option>
+                    {{#repositories}}
+                        <option value="{{id}}">{{name}} (issues: {{open_issues_count}})</option>
+                    {{/repositories}}                
+                </select>
+            {{/if}}
+        {{/if}}
+    </div>
+    <p class="settings__help">
+        for example: <a class="settings__example" href="#" on-click="setUser:'jashkenas'">jashkenas</a>, 
+        <a class="settings__example" href="#" on-click="setUser:'ractivejs'">ractivejs</a> or        
+        <a class="settings__example" href="#" on-click="setUser:'paperjs'">paperjs</a>
+    </p>    
+
 </div>

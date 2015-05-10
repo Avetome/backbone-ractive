@@ -10,7 +10,9 @@
                         <span class="issues-list__label" style="background-color: #{{color}}">{{name}}</span>
                     {{/labels}}
                 </p>
-                <p class="issues-list__summary">#{{number}} opened {{formatDate(created_at)}} by {{user.login}}</p>
+                <p class="issues-list__summary">
+                    #{{number}} opened {{formatDate(created_at)}} by <a class="issues-list__author-link" href="#" on-click="setUser:'{{user.login}}'">{{user.login}}</a>
+                </p>
             </div>
             <div class="issues-list__column2">
                 <div class="issues-list__comments">{{comments}}</div>

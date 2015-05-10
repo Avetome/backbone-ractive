@@ -20,6 +20,7 @@
     "backbone": "~1.1.2",
     "ractive": "~0.7.3",
     "ractive-adaptors-backbone": "~0.3.0",
-    "bootstrap": "~3.3.4"
+    "bootstrap": "~3.3.4",
+    "moment": "~2.10.2"
   }
 }

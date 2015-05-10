@@ -33,7 +33,7 @@ var IssuesListView = Ractive.extend({
             else {
                 return md.format("D MMM");
             }
-        }
+        },
     },
 
     adapt: [ BackboneAdaptor ],
@@ -84,6 +84,13 @@ var IssuesListView = Ractive.extend({
                         console.error(error);
                     }.bind(this)                    
                 );
+            },
+
+            setUser(event, user) {
+                console.debug(user);
+                this.set("user", user);
+                this.fire("userChange");
+                return false;
             }
         });
     }  
