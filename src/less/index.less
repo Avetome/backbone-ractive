@@ -6,6 +6,7 @@ body {
 
 .issues-list {
     padding: 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .issues-list__issue {
@@ -17,7 +18,11 @@ body {
     margin-left: 0;
     margin-right: 0;
     padding: 10px 0;
-    position: relative;        
+    position: relative;
+
+    &:hover {
+        background-color: @gray-lighter;
+    }
 }
 
 .issues-list__column1 {
@@ -37,6 +42,10 @@ body {
 .issues-list__link {
     color: @text-color;
     font-weight: bold;
+
+    &:hover {
+        color: @text-color;
+    }    
 }
 
 .issues-list__comments {

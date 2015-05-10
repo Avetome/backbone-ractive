@@ -1,23 +1,27 @@
 <script id="IssuesListTemplate" type="ractive/text">
-    //= issues-list-settings.html
-    <ul class="issues-list">
-    {{#issues}}
-        <li class="issues-list__issue">
-            <div class="issues-list__column1">
-                <p class="issues-list__title">
-                    <a href="#issue/{{id}}" class="issues-list__link">{{title}}</a>
-                    {{#labels}}
-                        <span class="issues-list__label {{isDimColor(color) ? '_dim' : ''}}" style="background-color: #{{color}}">{{name}}</span>
-                    {{/labels}}
-                </p>
-                <p class="issues-list__summary">
-                    #{{number}} opened {{formatDate(created_at)}} by <a class="issues-list__author-link" href="#" on-click="setUser:'{{user.login}}'">{{user.login}}</a>
-                </p>
-            </div>
-            <div class="issues-list__column2">
-                <div class="issues-list__comments">{{comments}}</div>
-            </div>
-        </li>
-    {{/issues}}
-    </ul>
+    {{#if visible}}
+        //= issues-list-settings.html
+        {{#if issues.length}}
+            <ul class="issues-list">
+                {{#each issues}}
+                    <li class="issues-list__issue">
+                        <div class="issues-list__column1">
+                            <p class="issues-list__title">
+                                <a href="#repos/{{../../user}}/{{repository.name}}/issues/{{number}}" class="issues-list__link">{{title}}</a>
+                                {{#labels}}
+                                    <span class="issues-list__label {{isDimColor(color) ? '_dim' : ''}}" style="background-color: #{{color}}">{{name}}</span>
+                                {{/labels}}
+                            </p>
+                            <p class="issues-list__summary">
+                                #{{number}} opened {{formatDate(created_at)}} by <a class="issues-list__author-link" href="#" on-click="setUser:'{{user.login}}'">{{user.login}}</a>
+                            </p>
+                        </div>
+                        <div class="issues-list__column2">
+                            <div class="issues-list__comments">{{comments}}</div>
+                        </div>
+                    </li>
+                {{/each issues}}        
+            </ul>
+        {{/if}}
+    {{/if}}
 </script>
