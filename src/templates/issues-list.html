@@ -2,6 +2,9 @@
     {{#if visible}}
         //= issues-list-settings.html
         {{#if issues.length && !errorLoadingIssues}}
+            <div class="issues-list__header">
+                <span class="issues-list__count">{{repository.open_issues}} opened</span>
+            </div>
             <ul class="issues-list">
                 {{#each issues}}
                     <li class="issues-list__issue">
