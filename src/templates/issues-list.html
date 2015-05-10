@@ -5,7 +5,7 @@
         <li class="issues-list__issue">
             <div class="issues-list__column1">
                 <p class="issues-list__title">
-                    <a href="#" class="issues-list__link">{{title}}</a>
+                    <a href="#issue/{{id}}" class="issues-list__link">{{title}}</a>
                     {{#labels}}
                         <span class="issues-list__label {{isDimColor(color) ? '_dim' : ''}}" style="background-color: #{{color}}">{{name}}</span>
                     {{/labels}}
