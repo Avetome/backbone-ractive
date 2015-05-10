@@ -34,9 +34,14 @@
                 {{/if}}
             {{/if}}
         </div>
+        <ul class="issues-list">
         {{#issues}}
-            <h1>{{title}}</h1>
-        {{/issues}}    
+            <li class="issues-list__issue">
+                <div class="issues-list__title">{{title}}</div>
+                <div class="issues-list__comments">{{labels.length}}</div>
+            </li>
+        {{/issues}}
+        </ul>
     </script>
     <div id="IssuesList"></div>
 </body>
