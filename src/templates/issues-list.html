@@ -20,8 +20,18 @@
                             <div class="issues-list__comments">{{comments}}</div>
                         </div>
                     </li>
-                {{/each issues}}        
+                {{/each issues}}
             </ul>
+        {{else}}
+            {{#if repoHasNoIssues}}
+                <div class="issues-list__noissue">There is no issue in this repository</div>
+            {{/if}}
+            {{#if issuesLoading}}
+                <div class="issues-list__loading">Loading issues...</div>
+            {{/if}}
+            {{#if errorLoadingIssues}}
+                <div class="issues-list__error">Error issues loading. Try to check your internet connection</div>
+            {{/if}}                        
         {{/if}}
     {{/if}}
 </script>

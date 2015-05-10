@@ -22,6 +22,9 @@ var IssuesListView = Ractive.extend({
         userHasNoRepos: false,
         errorLoadingRepos: false,
         reposLoading: false,
+        repoHasNoIssues: false,
+        errorLoadingIssues: false,
+        issuesLoading: false,
         visible: true,
 
         formatDate: function(date) {
@@ -67,7 +70,7 @@ var IssuesListView = Ractive.extend({
             userChange: function(event) {
                 this.set("reposLoading", true);
                 this.set("errorLoadingRepos", false);
-                this.set("userHasNoRepos", false);                    
+                this.set("userHasNoRepos", false);
 
                 // clean issues list
                 var issues = this.get("issues");
@@ -97,21 +100,29 @@ var IssuesListView = Ractive.extend({
                 var repository = this.get("repositories").get(id);
                 this.set("repository", repository);
                 var issues = this.get("issues");
+                
+                this.set("issuesLoading", true);
+                this.set("errorLoadingIssues", false);
+                this.set("repoHasNoIssues", false);                
 
                 // also we can user repository.get("issues_url"), but in this case we need cut "{/number}" substring                
                 issues.url = Urls.issues(this.get("user"), repository.get("name"));
                 issues.fetch()
                     .done(function(){
                         this.set("issues", issues);
+                        this.set("repoHasNoIssues", !issues.length);
+                        this.set("errorLoadingIssues", false);
+                        this.set("issuesLoading", false);                        
                     }.bind(this))
                     .fail(function(error){
-                        console.error(error);
+                        this.set("repoHasNoIssues", false);
+                        this.set("errorLoadingIssues", true);
+                        this.set("issuesLoading", false);
                     }.bind(this)                    
                 );
             },
 
             setUser(event, user) {
-                console.debug(user);
                 this.set("user", user);
                 this.fire("userChange");
                 return false;
