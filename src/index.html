@@ -14,7 +14,10 @@
 <body>
     <script id="IssuesListTemplate" type="ractive/text">
         <div class="settings">
-            <input type="text" class="settings__user" on-change="userChange" value="{{user}}"/>
+            <input type="text" class="settings__user" on-change="userChange" value="{{user}}"/>            
+            {{#if reposLoading}}
+                <span class="settings__loading">Loading repositories list</span>
+            {{/if}}            
             {{#if errorLoadingRepos}}
                 <span class="settings__error">Error repositories loading. Try another user name.</span>
             {{/if}}

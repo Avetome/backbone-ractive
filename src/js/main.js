@@ -22,18 +22,26 @@ var IssuesListView = Ractive.extend({
             userChange: function(event) {
                 var repos = this.get("repositories");
                 repos.url = Urls.repos(this.get("user"));
+                this.set("reposLoading", true);
 
                 repos.fetch()
                     .done(function(){
                         this.set("repositories", repos);
                         this.set("userHasNoRepos", !repos.length);
                         this.set("errorLoadingRepos", false);
+                        this.set("reposLoading", false);
                     }.bind(this))
                     .fail(function(error){
                         this.set("userHasNoRepos", false);
                         this.set("errorLoadingRepos", true);
+                        this.set("reposLoading", false);
                     }.bind(this)
                 );
+
+                // clean issues list
+                var issues = this.get("issues");
+                issues.reset([]);
+                this.set("issues", issues);
             },
 
             repoChange: function(event) {
@@ -68,7 +76,8 @@ window.onload = function() {
             repository: "",
             repositories: new Repositories(),
             userHasNoRepos: false,
-            errorLoadingRepos: false
+            errorLoadingRepos: false,
+            reposLoading: false
         },
 
         adapt: [ BackboneAdaptor ],
