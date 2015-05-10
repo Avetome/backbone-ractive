@@ -1,7 +1,7 @@
 <script id="IssuesListTemplate" type="ractive/text">
     {{#if visible}}
         //= issues-list-settings.html
-        {{#if issues.length}}
+        {{#if issues.length && !errorLoadingIssues}}
             <ul class="issues-list">
                 {{#each issues}}
                     <li class="issues-list__issue">
