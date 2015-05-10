@@ -11,7 +11,8 @@ var Ractive = require("ractive");
 //Ractive.DEBUG = false;
 var BackboneAdaptor = require("ractive-adaptors-backbone");
 BackboneAdaptor.Backbone = Backbone;
-var Moment = require("moment");
+
+var DateFormatter = require("./../utils/DateFormatter");
 
 var IssuesListView = Ractive.extend({
     data: {
@@ -30,17 +31,7 @@ var IssuesListView = Ractive.extend({
         page: 1,
         visible: true,
 
-        formatDate: function(date) {
-            var md = Moment(date);
-            var mn = Moment(); // now
-
-            if(mn.diff(md, "days") < 10) {                
-                return md.fromNow();
-            }
-            else {
-                return md.format("D MMM");
-            }
-        },
+        formatDate: DateFormatter.format,
 
         isDimColor: function(hexColor) {
             function hexToRgb(hex) {
