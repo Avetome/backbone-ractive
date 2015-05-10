@@ -7,7 +7,7 @@
                 <p class="issues-list__title">
                     <a href="#" class="issues-list__link">{{title}}</a>
                     {{#labels}}
-                        <span class="issues-list__label" style="background-color: #{{color}}">{{name}}</span>
+                        <span class="issues-list__label {{isDimColor(color) ? '_dim' : ''}}" style="background-color: #{{color}}">{{name}}</span>
                     {{/labels}}
                 </p>
                 <p class="issues-list__summary">
