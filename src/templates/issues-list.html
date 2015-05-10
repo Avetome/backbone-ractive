@@ -4,16 +4,18 @@
         {{#if issues.length && !errorLoadingIssues && !issuesLoading}}
             <div class="issues-list__header">
                 <span class="issues-list__count">{{repository.open_issues}} opened</span>
-                <div class="issues-list__perpage">
-                    issues per page:
-                    <select class="issues-list__perpageinput" on-change="perPageChange">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30" selected>30</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
+                {{#if issues.length > 10}}
+                    <div class="issues-list__perpage">
+                        issues per page:
+                        <select class="issues-list__perpageinput" on-change="perPageChange">
+                            <option value="10" {{perPage == 10 ? 'selected' : ''}}>10</option>
+                            <option value="20" {{perPage == 20 ? 'selected' : ''}}>20</option>
+                            <option value="30" {{perPage == 30 ? 'selected' : ''}}>30</option>
+                            <option value="50" {{perPage == 50 ? 'selected' : ''}}>50</option>
+                            <option value="100" {{perPage == 100 ? 'selected' : ''}}>100</option>
+                        </select>
+                    </div>
+                {{/if}}
             </div>
             <ul class="issues-list">
                 {{#each issues}}
