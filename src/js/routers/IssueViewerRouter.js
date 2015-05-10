@@ -4,8 +4,9 @@ Backbone.$ = $;
 
 var IssueViewerRouter = Backbone.Router.extend({
     routes: {
-    '':     'showIssuesList',
-    'issue/:id': 'showIssue'
+    'issues':     'showIssuesList',
+    'repos/:user/:repo/issues/:number': 'showIssue',
+    '*path': 'showIssuesList',
     }
 });
 

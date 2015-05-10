@@ -22,6 +22,7 @@ var IssuesListView = Ractive.extend({
         userHasNoRepos: false,
         errorLoadingRepos: false,
         reposLoading: false,
+        visible: true,
 
         formatDate: function(date) {
             var md = Moment(date);
