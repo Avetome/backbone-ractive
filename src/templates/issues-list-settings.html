@@ -14,7 +14,7 @@
                 <select class="settings__repo" on-change="repoChange">
                     <option value="" disabled selected>Select a repo...</option>
                     {{#repositories}}
-                        <option value="{{id}}">{{name}} (issues: {{open_issues_count}})</option>
+                        <option value="{{id}}" {{name == repository.name ? 'selected' : ''}}>{{name}} (issues: {{open_issues_count}})</option>
                     {{/repositories}}                
                 </select>
             {{/if}}
