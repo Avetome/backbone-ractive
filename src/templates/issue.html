@@ -1,8 +1,10 @@
 <script id="IssueTemplate" type="ractive/text">
     {{#if issue != null}}
-        {{#issue}}
-            <a href="#issues">return</a>
-            <h1>{{title}}</h1>
+        {{#issue}}            
+            <div class="issue">
+                <strong class="issue__title">{{title}}</strong>
+                <em class="issue__apologies">I do not have time to add more now. You can <a href="#issues">return to issue list</a></em>
+            </div>
         {{/issue}}        
     {{/if}}    
 </script>
