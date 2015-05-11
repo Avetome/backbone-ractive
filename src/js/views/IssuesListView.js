@@ -28,7 +28,7 @@ var IssuesListView = Ractive.extend({
         errorLoadingIssues: false,
         issuesLoading: false,
         perPage: 30,
-        pages: 0,
+        pages: 1,
         page: 1,
         visible: true,
 
@@ -86,7 +86,28 @@ var IssuesListView = Ractive.extend({
                 this.set("perPage", perPage);
 
                 this.updateIssues();
-            },           
+            },
+
+            nextPage: function() {
+                var page = this.get("page");
+                if (page < this.get("pages")) 
+                {
+                    this.set("page", ++page);
+                    this.updateIssues();
+                }
+
+                return false;
+            },
+
+            prevPage: function() {
+                var page = this.get("page");
+                if (page != 1) {
+                    this.set("page", --page);
+                    this.updateIssues();
+                }
+
+                return false;
+            },            
 
             setUser(event, user) {
                 this.set("user", user);
@@ -110,7 +131,8 @@ var IssuesListView = Ractive.extend({
                     this.set("issues", issues);
                     this.set("repoHasNoIssues", !issues.length);
                     this.set("errorLoadingIssues", false);
-                    this.set("issuesLoading", false);                        
+                    this.set("issuesLoading", false);
+                    this.set("pages", Math.ceil(this.get("repository").get("open_issues") / this.get("perPage")));
                 }.bind(this))
                 .fail(function(error){
                     this.set("repoHasNoIssues", false);

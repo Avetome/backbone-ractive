@@ -1,6 +1,7 @@
-.issues-list {
-    padding: 0;
+.issues-list {    
     border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .issues-list__issue {
@@ -111,4 +112,33 @@
 .issues-list__useravatar {
     .square(60px);
     display: inline-block;
+}
+
+.issues-list__pager {
+    .row;
+    background-color: @gray-lighter;
+    margin-bottom: 50px;
+    margin-left: 0;
+    margin-right: 0;    
+    padding: 10px;    
+}
+
+.issues-list__pager-prev {
+    .make-xs-column(1);
+    .make-sm-column(1);
+    .make-md-column(1);   
+}
+
+.issues-list__pager-current {
+    .make-xs-column(10);
+    .make-sm-column(10);
+    .make-md-column(10);   
+
+    text-align: center;
+}
+
+.issues-list__pager-next {
+    .make-xs-column(1);
+    .make-sm-column(1);
+    .make-md-column(1);   
 }

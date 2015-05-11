@@ -42,6 +42,21 @@
                     </li>
                 {{/each issues}}
             </ul>
+            <div class="issues-list__pager">
+                <div class="issues-list__pager-prev" on-click="prevPage">
+                    {{#if page > 1}}
+                    <a href="#" class="btn btn-link">← prev</a>
+                    {{/if}}
+                </div>
+                <div class="issues-list__pager-current">
+                    {{page}} of {{pages}}
+                </div>
+                <div class="issues-list__pager-next">
+                    {{#if page < pages}}
+                    <a href="#" class="btn btn-link" on-click="nextPage">next →</a>
+                    {{/if}}
+                </div>
+            </div>
         {{else}}
             {{#if repoHasNoIssues}}
                 <div class="issues-list__noissue">There is no issue in this repository</div>
